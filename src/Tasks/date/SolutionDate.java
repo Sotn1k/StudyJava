@@ -9,7 +9,7 @@ public class SolutionDate {
 
         RemainingDays.getDifferenceInDays(date1,date2);
         int date = RemainingDays.getDifferenceInDays1(date1,date2);
-        System.out.println(date);;
+        System.out.println(date);
 
 
     }
