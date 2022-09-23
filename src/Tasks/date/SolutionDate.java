@@ -1,19 +1,31 @@
 package Tasks.date;
 
+
+import jdk.internal.util.ArraysSupport;
+
+import java.util.Arrays;
+
 public class SolutionDate {
-
-
     public static void main(String[] args) {
-        RemainingDays date1 = new RemainingDays(2022,0,1,0,0,0);
-        RemainingDays date2 = new RemainingDays(2022,3,20,0,0,0);
+        String text = "abcsrtcba";
+        char[] array1 = text.toCharArray();
+        boolean result = true;
 
-        RemainingDays.getDifferenceInDays(date1,date2);
-        int date = RemainingDays.getDifferenceInDays1(date1,date2);
-        System.out.println(date);
-
-
+        for (int i = 0, n = array1.length; i < n / 2; i++) {
+            char c = array1[i];
+            result &= c == array1[n - i - 1];
+            array1[i] = array1[n - i - 1];
+            array1[n - i - 1] = c;
+        }
+        System.out.println(array1);
+        System.out.println("Читаемость ? " + result);
     }
-
-
-
 }
+
+
+
+
+
+
+
+
