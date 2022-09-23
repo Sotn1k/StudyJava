@@ -11,13 +11,12 @@ public class EncryptText {
         return keyCrypt;
     }
 
-
     public String encrypt(String text){
 
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < text.length(); i++) {
             char c = text.charAt(i);
-            c = (char) (c + keyCrypt);
+            c = (char) (c + getKeyCrypt());
             stringBuilder.append(c);
         }
         return stringBuilder.toString();

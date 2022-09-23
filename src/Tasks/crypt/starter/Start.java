@@ -14,8 +14,8 @@ public class Start {
 
             System.out.println("""
                     Выбор оперций :\s
-                    1 Зашифровать текст
-                    2 Расшифровать текст
+                    1 Зашифровать текста
+                    2 Дешифрования текста
                     3 Выбор файла для шифрования
                     4 Сохранение результата шифрования
                     5 Расшифровать файл
@@ -31,27 +31,23 @@ public class Start {
                     System.out.println("Введите цифру ключа для шифрования!");
                     Scanner sc1 = new Scanner(System.in);
                     textToCrypt.setKeyCrypt(Integer.parseInt(sc1.nextLine())); //-->> не ставится ключ
-                    //new EncryptText().setKeyCrypt(sc1.nextInt()); -->> не ставится ключ
-
-
 
                     System.out.println("Текст для криптования");
                     String textTo = sc1.nextLine();
                     System.out.println("Ваш текст для криптования: " + textTo);
-                    String textToAfterCrypt = new EncryptText().encrypt(textTo);
+                    String textToAfterCrypt = textToCrypt.encrypt(textTo);
                     System.out.println("Текст после криптования " + textToAfterCrypt);
                     break;
                 case 2 :
-                    System.out.println("Введите цифру ключа для расшифровки текста");
+                    System.out.println("Введите цифру ключа для дешифрования текста");
                     Scanner sc2 = new Scanner(System.in);
-                    textToDeCrypt.setKeyDeCrypt(sc2.nextInt());
+                    textToDeCrypt.setKeyDeCrypt(Integer.parseInt(sc2.nextLine()));
 
-                    Scanner scTextDecrypt = new Scanner(System.in);
-                    System.out.println("Текст для шифрования");
-                    String textDeCrypt = scTextDecrypt.nextLine();
-                    System.out.println("Ваш текст для шифрования: " + textDeCrypt);
-                    String textToAfterDeCrypt = new DecryptText().decrypt(textDeCrypt);
-                    System.out.println("Текст после криптования " + textToAfterDeCrypt);
+                    System.out.println("Текст для дешифрования");
+                    String textDeCrypt = sc2.nextLine();
+                    System.out.println("Ваш текст для дешифрования: " + textDeCrypt);
+                    String textToAfterDeCrypt = textToDeCrypt.decrypt(textDeCrypt);
+                    System.out.println("Текст после дешифрования " + textToAfterDeCrypt);
                     break;
                 case 0 :
                     number = 0;
