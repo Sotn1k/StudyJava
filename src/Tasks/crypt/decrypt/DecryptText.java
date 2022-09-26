@@ -12,7 +12,7 @@ public class DecryptText {
         return keyDeCrypt;
     }
 
-    public String decrypt(String text){
+    public String decrypt(String text) {
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < text.length(); i++) {
             char c = text.charAt(i);
