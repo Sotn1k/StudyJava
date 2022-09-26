@@ -3,6 +3,7 @@ package Tasks.crypt.starter;
 import Tasks.crypt.decrypt.DecryptText;
 import Tasks.crypt.encrypt.EncryptText;
 
+import java.io.*;
 import java.util.Scanner;
 
 public class Start {
@@ -11,15 +12,14 @@ public class Start {
     public static void main(String[] args) {
         int number = 1;
         while (number != 0) {
-
+            System.out.println();
             System.out.println("""
                     Выбор оперций :\s
                     1 Зашифровать текста
                     2 Дешифрования текста
-                    3 Выбор файла для шифрования
-                    4 Сохранение результата шифрования
-                    5 Расшифровать файл
-                    6 Сохранить результат расшифрования
+                    3 Зашифровать текс из файла & Сохранение результата шифрования в отдельный файл
+                    5 Расшифровать файл & Сохранить результат расшифрованияв отдельный файл
+                    
                     0 Выход из программы
                     """);
 
@@ -48,6 +48,47 @@ public class Start {
                     System.out.println("Ваш текст для дешифрования: " + textDeCrypt);
                     String textToAfterDeCrypt = textToDeCrypt.decrypt(textDeCrypt);
                     System.out.println("Текст после дешифрования " + textToAfterDeCrypt);
+                    break;
+                case 3 :
+                    try {
+                        FileInputStream fis = new FileInputStream("textNotCrypt.txt");
+                        FileOutputStream fos = new FileOutputStream("textToCrypt.txt");
+                        Reader reader = new InputStreamReader(fis);
+                        System.out.println("Введите цифру ключа для шифрования!");
+                        Scanner sc3 = new Scanner(System.in);
+                        textToCrypt.setKeyCrypt(Integer.parseInt(sc3.nextLine()));
+                        while (reader.ready()){
+                            char crypt = (char) reader.read();
+                            String textToAfterCryptFile = textToCrypt.encrypt(String.valueOf(crypt));
+                            System.out.print(textToAfterCryptFile);
+
+                            // TODO реализовать сохранения в файл!
+                        }
+                        fis.close();
+                        fos.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                case 4 :
+                    try {
+                        FileInputStream fis = new FileInputStream("textToCrypt.txt");
+                        FileOutputStream fos = new FileOutputStream("textNotCrypt1.txt");
+                        Reader reader = new InputStreamReader(fis);
+                        System.out.println("Введите цифру ключа для дешифрования текста!");
+                        Scanner sc4 = new Scanner(System.in);
+                        textToCrypt.setKeyCrypt(Integer.parseInt(sc4.nextLine()));
+                        while (reader.ready()){
+                            char crypt = (char) reader.read();
+                            String textToAfterCryptFile = textToDeCrypt.decrypt(String.valueOf(crypt));
+                            System.out.print(textToAfterCryptFile);
+                            // TODO реализовать сохранения в файл!
+                        }
+                        fis.close();
+                        fos.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     break;
                 case 0 :
                     number = 0;
